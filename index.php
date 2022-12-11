@@ -11,44 +11,45 @@
 <body>
     <header class='header'> <h2>Идеальный подбор пары</h2></header>
     <main>
-        <?php 
-            $person = 'Лермонтов Михаил Юрьевич';
-            $personParts = getPartsFromFullname($person);
-            echo "<p class='origin-line'>Входная строка: $person </p>"; 
-        ?>
-        <section class='task'>
-            <h3 class='task-header'>Разбиение и объединение ФИО</h3>
-            <p><?php 
-                echo "getPartsFromFullname: ";
-                print_r($personParts); 
-                echo "<br>getFullnameFromParts: ";
-                echo getFullnameFromParts($personParts); 
-            ?></p>
+        <section class='task form-container'>
+            <form class='data-form' method="POST">
+                <h3 class='task-header form-header'>Введите свои данные</h3>
+                <div class='form-row'>
+                    <label for="surname-input" class='form-row__label'>Фамилия:</label>
+                    <input type="text" class='for-row__input-text' name='surname' id='surname-input'>
+                </div>
+                <div class='form-row'>
+                    <label for="name-input" class='form-row__label'>Имя:</label>
+                    <input type="text" class='for-row__input-text' name='name' id='name-input'>
+                </div>
+                <div class='form-row'>
+                    <label for="patronym-input" class='form-row__label'>Отчество:</label>
+                    <input type="text" class='for-row__input-text' name='patronym' id='patronym-input'>
+                </div>
+                <div class='form-row buttons-row'>
+                    <input class='for-row__btn for-row__btn-submit' type="submit" value='Показать пару'>
+                    <input class='for-row__btn for-row__btn-clear' type="button" value='Очистить поля'>
+                </div>
+            </form>
+            
+            <?php 
+                $surname = isset($_POST['surname']) ? $_POST['surname'] : 'Лермонтов';
+                $name = isset($_POST['name']) ? $_POST['name'] : 'Михаил';
+                $patronym = isset($_POST['patronym']) ?  $_POST['patronym'] : 'Юрьевич';
+                $person = "$surname $name $patronym";
+                $personParts = getPartsFromFullname($person);
+                echo "<p class='task__origin-user-name'>Пользователь: $person </p>"; 
+            ?>
         </section>
         <section class='task'>
-            <h3 class='task-header'>Сокращение ФИО</h3>
-            <p> <?php echo getShortName($person) ?> </p>
-        </section>
-        <section class='task'>
-            <h3 class='task-header'>Функция определения пола по ФИО</h3>
-            <p><?php
-                foreach($example_persons_array as $person){
-                    $gender = getGenderFromName($person['fullname']);
-                    if($gender == 1) $gender = 'мужской пол';
-                    else if($gender == -1) $gender = 'женский пол';
-                    else $gender = 'неопределенный пол';
-                    echo "{$person['fullname']}: $gender<br>";
-                }
-            ?></p>
-        </section>
-        <section class='task'>
-            <h3 class='task-header'>Определение возрастно-полового состава</h3>
+            <h3 class='task-header'>Половой состав</h3>
             <p><?php echo getGenderDescription($example_persons_array) ?></p>
         </section>
         <section class='task'>
-            <h3 class='task-header'>Идеальный подбор пары</h3>
-            <p><?php echo getPerfectPartner($personParts[0], $personParts[1], $personParts[2], $example_persons_array) ?></p>
+            <h3 class='task__header'>Идеальный подбор пары</h3>
+            <p class='task__compatible-container'><?php echo getPerfectPartner($personParts[0], $personParts[1], $personParts[2], $example_persons_array) ?></p>
         </section>
     </main>
 </body>
+<script src='../scriptes/index.js'></script>
 </html>
