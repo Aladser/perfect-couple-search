@@ -1,5 +1,6 @@
 <?php
 
+function getPercent($value){return round($value, 4) * 100;} // получить процент
 // *******  Разбиение и объединение ФИО *******
 function getPartsFromFullname($fullName){ return explode(' ', $fullName); };
 function getFullnameFromParts($nameParts){ return implode(' ', $nameParts); };
@@ -38,9 +39,9 @@ function getGenderDescription($database){
 	$women = array_filter($database, fn($person) => getGenderFromName($person['fullname']) == -1 ? true : false);
 	$undefined = array_filter($database, fn($person) => getGenderFromName($person['fullname']) == 0 ? true : false);
 	
-	$menPart = round(count($men)/$size, 4) * 100;
-	$womenPart = round(count($women)/$size, 4) * 100;
-	$undefindePart = round(count($undefined)/$size, 4) * 100;
+	$menPart = getPercent(count($men)/$size);
+	$womenPart = getPercent(count($women)/$size);
+	$undefindePart = getPercent(count($undefined)/$size);
 	
 	return <<<_TEXT_
 	Гендерный состав аудитории:<br>
