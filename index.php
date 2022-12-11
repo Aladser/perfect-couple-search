@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php include 'scriptes/perfect-partner-search.php'; ?>
-<?php include 'resources/data.php'; ?>
+<?php include 'scriptes/perfect-partner-search.php'; // задания - функции?>
+<?php include 'resources/data.php'; // массив $example_persons_array?>
 <head>
     <meta charset="UTF-8">
     <link rel="shortcut icon" href="resources/icon.ico">
