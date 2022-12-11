@@ -22,8 +22,9 @@ function getGenderFromName($fullName){
 	if($nameEnding === 'й' || $nameEnding === 'н') 	$genderFeature++;
 	else if($nameEnding === 'а') $genderFeature--;
 	
-	if(mb_substr($nameParts[2], -3) === 'вна') $genderFeature--;
-	else if(mb_substr($nameParts[2], -2) === 'ич') $genderFeature++;
+	$patronymEnding = mb_substr($nameParts[2], -3);
+	if($patronymEnding === 'вна') $genderFeature--;
+	else if($patronymEnding === 'вич') $genderFeature++;
 	
 	if($genderFeature>0) return 1;
 	elseif($genderFeature<0) return -1;
@@ -43,7 +44,7 @@ function getGenderDescription($database){
 	
 	return <<<_TEXT_
 	Гендерный состав аудитории:<br>
-	---------------------------<br>
+	------------------------------------------<br>
 	Мужчины - $menPart%<br>
 	Женщины - $womenPart%<br>
 	Не удалось определить - $undefindePart%<br>

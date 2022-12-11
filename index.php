@@ -6,18 +6,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
     <title>Document</title>
 </head>
 <body>
-    <header> <h2>Идеальный подбор пары</h2></header>
+    <header class='header'> <h2>Идеальный подбор пары</h2></header>
     <main>
         <?php 
             $person = 'Лермонтов Михаил Юрьевич';
             $personParts = getPartsFromFullname($person);
-            echo "<p>Входная строка: $person </p>"; 
+            echo "<p class='origin-line'>Входная строка: $person </p>"; 
         ?>
-        <section>
-            <h3>Разбиение и объединение ФИО</h3>
+        <section class='task'>
+            <h3 class='task-header'>Разбиение и объединение ФИО</h3>
             <p><?php 
                 echo "getPartsFromFullname: ";
                 print_r($personParts); 
@@ -25,12 +26,12 @@
                 echo getFullnameFromParts($personParts); 
             ?></p>
         </section>
-        <section>
-            <h3>Сокращение ФИО</h3>
+        <section class='task'>
+            <h3 class='task-header'>Сокращение ФИО</h3>
             <p> <?php echo getShortName($person) ?> </p>
         </section>
-        <section>
-            <h3>Функция определения пола по ФИО</h3>
+        <section class='task'>
+            <h3 class='task-header'>Функция определения пола по ФИО</h3>
             <p><?php
                 foreach($example_persons_array as $person){
                     $gender = getGenderFromName($person['fullname']);
@@ -41,17 +42,16 @@
                 }
             ?></p>
         </section>
-        <section>
-            <h3>Определение возрастно-полового состава</h3>
+        <section class='task'>
+            <h3 class='task-header'>Определение возрастно-полового состава</h3>
             <p><?php
                 echo getGenderDescription($example_persons_array);
             ?></p>
         </section>
-        <section>
-            <h3>Идеальный подбор пары</h3>
+        <section class='task'>
+            <h3 class='task-header'>Идеальный подбор пары</h3>
             <p><?php
-                echo getGenderDescription($example_persons_array);
-                getPerfectPartner($personParts[0], $personParts[1], $personParts[2], $example_persons_array);
+                echo getPerfectPartner($personParts[0], $personParts[1], $personParts[2], $example_persons_array);
             ?></p>
         </section>
     </main>

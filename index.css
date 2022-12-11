@@ -1,0 +1,26 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+.header, .origin-line, .task{
+    text-align: center;
+}
+.header{
+    margin-top: 10px;
+}
+.origin-line{
+    padding: 15px 0px;
+    font-size: 20px;
+    color: rgb(0, 85, 0);
+}
+.task{
+    border: 1px dotted grey;
+    width: 30%;
+    margin: auto;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+.task-header{
+    padding-bottom: 10px;
+}
