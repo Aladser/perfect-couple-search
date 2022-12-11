@@ -43,15 +43,11 @@
         </section>
         <section class='task'>
             <h3 class='task-header'>Определение возрастно-полового состава</h3>
-            <p><?php
-                echo getGenderDescription($example_persons_array);
-            ?></p>
+            <p><?php echo getGenderDescription($example_persons_array) ?></p>
         </section>
         <section class='task'>
             <h3 class='task-header'>Идеальный подбор пары</h3>
-            <p><?php
-                echo getPerfectPartner($personParts[0], $personParts[1], $personParts[2], $example_persons_array);
-            ?></p>
+            <p><?php echo getPerfectPartner($personParts[0], $personParts[1], $personParts[2], $example_persons_array) ?></p>
         </section>
     </main>
 </body>
