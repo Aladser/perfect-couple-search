@@ -45,5 +45,29 @@
             'fullname' => 'Шварцнегер Арнольд Густавович',
             'job' => 'babysitter',
         ],
+        [
+            'fullname' => 'Авраменко Андрей Сергеевич',
+            'job' => 'programmist',
+        ],
+        [
+            'fullname' => 'Хлобыстов Иван Фёдорович',
+            'job' => 'programmist',
+        ],
+        [
+            'fullname' => 'Арутюнян Евгений Владимирович',
+            'job' => 'programmist',
+        ],
+        [
+            'fullname' => 'Крамаренко Татьяна Олеговна',
+            'job' => 'deputy director',
+        ],
+        [
+            'fullname' => 'Демешко Надежда Викторовна',
+            'job' => 'consult',
+        ],
+        [
+            'fullname' => 'Печеревина Евгения Андреевна',
+            'job' => 'lawyer',
+        ],
     ];
 ?>

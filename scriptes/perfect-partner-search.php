@@ -1,18 +1,24 @@
 <?php
 
 function getPercent($value){return round($value, 4) * 100;} // получить процент
+function formatName($value){return mb_strtoupper(mb_substr($value, 0, 1)).mb_strtolower(mb_substr($value, 1));} // форматирование имени
 // *******  Разбиение и объединение ФИО *******
-function getPartsFromFullname($fullName){ return explode(' ', $fullName); };
-function getFullnameFromParts($nameParts){ return implode(' ', $nameParts); };
+function getPartsFromFullname($fullName){  return $fullName==='' ? null : explode(' ', $fullName); };
+function getFullnameFromParts($nameParts){ return $nameParts===null ? '' : implode(' ', $nameParts); };
 // *******  Сокращение ФИО *******
 function getShortName($fullName){
+	if ($fullName === '') return '';
+
 	$nameParts = getPartsFromFullname($fullName);
 	$name = $nameParts[1];
 	$surname = mb_substr($nameParts[0], 0, 1);
+
 	return "$name $surname.";
 }
 // ******* Функция определения пола по ФИО *******
 function getGenderFromName($fullName){
+	if ($fullName === '') return 0;
+
 	$nameParts = getPartsFromFullname($fullName);
 	$genderFeature = 0;
 	
@@ -35,33 +41,32 @@ function getGenderFromName($fullName){
 // ******* Определение возрастно-полового состава *******
 function getGenderDescription($database){
 	$size = count($database);
-	$men = array_filter($database, fn($person) => getGenderFromName($person['fullname']) == 1 ? true : false);
-	$women = array_filter($database, fn($person) => getGenderFromName($person['fullname']) == -1 ? true : false);
-	$undefined = array_filter($database, fn($person) => getGenderFromName($person['fullname']) == 0 ? true : false);
+	$men = array_filter($database, fn($person) => getGenderFromName($person['fullname']) == 1);
+	$women = array_filter($database, fn($person) => getGenderFromName($person['fullname']) == -1);
+	$undefined = array_filter($database, fn($person) => getGenderFromName($person['fullname']) == 0);
 	
 	$menPart = getPercent(count($men)/$size);
 	$womenPart = getPercent(count($women)/$size);
 	$undefindePart = getPercent(count($undefined)/$size);
 	
 	return <<<_TEXT_
-	Гендерный состав аудитории:<br>
 	------------------------------------------<br>
 	Мужчины - $menPart%<br>
 	Женщины - $womenPart%<br>
 	Не удалось определить - $undefindePart%<br>
+	------------------------------------------<br>
 	_TEXT_;
 }
 
 // ******* Идеальный подбор пары *******
 function getPerfectPartner($surname, $name, $patronym, $database){
-	$surname = mb_strtoupper(mb_substr($surname, 0, 1)).mb_strtolower(mb_substr($surname, 1));
-	$name = mb_strtoupper(mb_substr($name, 0, 1)).mb_strtolower(mb_substr($name, 1));
-	$patronym = mb_strtoupper(mb_substr($patronym, 0, 1)).mb_strtolower(mb_substr($patronym, 1));
+	if($surname==='' || $name==='' || $patronym==='') return '';
+
 	$partner1 = getFullnameFromParts([$surname, $name, $patronym]);
-	
 	$gender = getGenderFromName($partner1);
+
 	if($gender != 0){
-		$candidates = array_values( array_filter($database, fn($person) => getGenderFromName($person['fullname']) == -$gender ? true : false) );
+		$candidates = array_values( array_filter($database, fn($person) => getGenderFromName($person['fullname']) == -$gender) );
 		$index = rand(0, count($candidates)-1);
 		$partner2 = $candidates[$index]['fullname'];
 	}
@@ -73,11 +78,13 @@ function getPerfectPartner($surname, $name, $patronym, $database){
 	$partner1 = getShortName($partner1);
 	$partner2 = getShortName($partner2);
 	$success = rand(5000, 10000)/100;
-	
-	return <<<_TEXT_
-			$partner1 + $partner2 =<br> 
-			♡ Идеально на $success% ♡<br>
-			_TEXT_;
+
+	$rslt = <<<_TEXT_
+	$partner1 + $partner2 =<br> 
+	♡ Идеально на $success% ♡<br>
+	_TEXT_;
+
+	return $rslt;
 }
 
 ?>
