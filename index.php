@@ -59,12 +59,9 @@
         </section>
         <section class='task'>
             <h3 class='task__header'>Идеальный подбор пары</h3>
-            <p class='task__compatible-container'>
-                <?php
-                    if($personParts != null) 
-                        echo getPerfectPartner($personParts[0], $personParts[1], $personParts[2], $example_persons_array); 
-                ?>
-            </p>
+            <p class='task__compatible-container'><?php
+                echo $personParts!=null ? getPerfectPartner($personParts[0], $personParts[1], $personParts[2], $example_persons_array) : ''; 
+            ?></p>
         </section>
     </main>
 </body>
