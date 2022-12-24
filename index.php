@@ -17,15 +17,15 @@
                 
                 <div class='form-row'>
                     <label for="surname-input" class='form-row__label'>Фамилия:</label>
-                    <input type="text" class='for-row__input-text' name='surname' id='surname-input' autocomplete="off" value='A'>
+                    <input type="text" class='for-row__input-text' name='surname' id='surname-input' autocomplete="off">
                 </div>
                 <div class='form-row'>
                     <label for="name-input" class='form-row__label'>Имя:</label>
-                    <input type="text" class='for-row__input-text' name='name' id='name-input' autocomplete="off" value='B'>
+                    <input type="text" class='for-row__input-text' name='name' id='name-input' autocomplete="off">
                 </div>
                 <div class='form-row'>
                     <label for="patronym-input" class='form-row__label'>Отчество:</label>
-                    <input type="text" class='for-row__input-text' name='patronym' id='patronym-input' autocomplete="off" value='C'>
+                    <input type="text" class='for-row__input-text' name='patronym' id='patronym-input' autocomplete="off">
                 </div>
                 <div class='form-row form-btn-row'>
                     <input class='for-row__btn for-row__btn-submit' type="submit" value='Показать пару'>
