@@ -75,16 +75,17 @@ function getPerfectPartner($surname, $name, $patronym, $database){
 		$partner2 = $database[$index]['fullname'];
 	}
 	
+	setcookie(name: 'partner1', value: $partner1);
+	setcookie(name: 'partner2', value: $partner2);
 	$partner1 = getShortName($partner1);
 	$partner2 = getShortName($partner2);
 	$success = rand(5000, 10000)/100;
+	setcookie(name: 'success', value: "$success%");
 
-	$rslt = <<<_TEXT_
+	return <<<_TEXT_
 	$partner1 + $partner2 =<br> 
 	♡ Идеально на $success% ♡<br>
 	_TEXT_;
-
-	return $rslt;
 }
 
 ?>

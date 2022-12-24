@@ -17,15 +17,15 @@
                 
                 <div class='form-row'>
                     <label for="surname-input" class='form-row__label'>Фамилия:</label>
-                    <input type="text" class='for-row__input-text' name='surname' id='surname-input' autocomplete="off">
+                    <input type="text" class='for-row__input-text' name='surname' id='surname-input' autocomplete="off" value='A'>
                 </div>
                 <div class='form-row'>
                     <label for="name-input" class='form-row__label'>Имя:</label>
-                    <input type="text" class='for-row__input-text' name='name' id='name-input' autocomplete="off">
+                    <input type="text" class='for-row__input-text' name='name' id='name-input' autocomplete="off" value='B'>
                 </div>
                 <div class='form-row'>
                     <label for="patronym-input" class='form-row__label'>Отчество:</label>
-                    <input type="text" class='for-row__input-text' name='patronym' id='patronym-input' autocomplete="off">
+                    <input type="text" class='for-row__input-text' name='patronym' id='patronym-input' autocomplete="off" value='C'>
                 </div>
                 <div class='form-row form-btn-row'>
                     <input class='for-row__btn for-row__btn-submit' type="submit" value='Показать пару'>
@@ -63,6 +63,10 @@
                 echo $personParts!=null ? getPerfectPartner($personParts[0], $personParts[1], $personParts[2], $example_persons_array) : ''; 
             ?></p>
         </section>
+        <section class='task'>
+            <h3 class='task__header'>Куки</h3>
+            <?php var_dump($_COOKIE); 
+        ?></section>
     </main>
 </body>
 <script src='../scriptes/index.js'></script>

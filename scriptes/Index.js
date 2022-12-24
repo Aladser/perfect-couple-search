@@ -1,4 +1,7 @@
 document.querySelector('.for-row__btn-clear').addEventListener('click',  () => {
     document.querySelector('.task__username-title').textContent = 'Пользователь:';
-    document.querySelector('.task__compatible-container').innerHTML = '';
+});
+
+document.querySelectorAll('.for-row__input-text').forEach(function(input){
+    input.addEventListener('click', function(){this.value = '';});
 });
