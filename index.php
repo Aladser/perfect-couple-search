@@ -63,10 +63,6 @@
                 echo $personParts!=null ? getPerfectPartner($personParts[0], $personParts[1], $personParts[2], $example_persons_array) : ''; 
             ?></p>
         </section>
-        <section class='task'>
-            <h3 class='task__header'>Куки</h3>
-            <?php var_dump($_COOKIE); 
-        ?></section>
     </main>
 </body>
 <script src='../scriptes/index.js'></script>
